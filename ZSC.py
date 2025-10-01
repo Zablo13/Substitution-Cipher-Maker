@@ -30,6 +30,7 @@ def kill_doubles(encrypted_text, double):
     for ch in encrypted_text:
         if ch == memory:
             checked += double
+            memory = double
         else:
             checked += ch
             memory = ch
