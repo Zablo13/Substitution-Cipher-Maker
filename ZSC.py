@@ -1,4 +1,4 @@
-### Zablos Substitution Cipher ###
+### Zablos Substitution Cipher 1.0.1 ###
 # for those who are bored with Sudoku :D
 # encrypts text with random substition mapping
 # difficulty 2 replaces spaces with a random sign
@@ -7,13 +7,21 @@ import random
 import string
 
 def generate_substitution():
-    letters = list(string.ascii_uppercase) + ["Ä", "Ö", "Ü", "+", "-"]
+    letters = list(string.ascii_uppercase) + ["+", "-"]
     shuffled = letters[:]
     random.shuffle(shuffled)
     return dict(zip(letters, shuffled))
 
-def encrypt(text, cipher):
+def clean_text(text):
+    letter = list(string.ascii_uppercase) + [" "]
+    cleaned = ""
     text = text.upper()
+    for ch in text:
+        if ch in letter or ch == " ":
+            cleaned += ch
+    return cleaned
+
+def encrypt(text, cipher):
     return "".join(cipher.get(ch, ch) for ch in text)
 
 def print_mapping(cipher):
@@ -40,8 +48,8 @@ def main():
     text = input("Enter text to encrypt: ")
     difficulty = int(input("Enter difficulty 1-3: "))
     cipher = generate_substitution()
-    
-    encrypted_text = encrypt(text, cipher)
+    cleaned_text = clean_text(text)    
+    encrypted_text = encrypt(cleaned_text, cipher)
     space = cipher.get('-')
     double = cipher.get('+')
     
