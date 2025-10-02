@@ -19,6 +19,12 @@ def clean_text(text):
     for ch in text:
         if ch in letter or ch == " ":
             cleaned += ch
+        elif ch == "Ä":
+            cleaned += "AE"
+        elif ch == "Ö":
+            cleaned += "OE"
+        elif ch == "Ü":
+            cleaned += "UE"
     return cleaned
 
 def encrypt(text, cipher):
