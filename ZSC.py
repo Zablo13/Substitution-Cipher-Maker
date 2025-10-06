@@ -6,8 +6,13 @@
 import random
 import string
 
-def generate_substitution():
-    letters = list(string.ascii_uppercase) + ["+", "-"]
+def generate_substitution(difficulty):
+    if difficulty == 1:
+        letters = list(string.ascii_uppercase)
+    elif difficulty == 2:
+        letters = list(string.ascii_uppercase) + ["-"]
+    elif difficulty == 3:
+        letters = list(string.ascii_uppercase) + ["+", "-"]
     shuffled = letters[:]
     random.shuffle(shuffled)
     return dict(zip(letters, shuffled))
@@ -53,7 +58,7 @@ def kill_doubles(encrypted_text, double):
 def main():
     text = input("Enter text to encrypt: ")
     difficulty = int(input("Enter difficulty 1-3: "))
-    cipher = generate_substitution()
+    cipher = generate_substitution(difficulty)
     cleaned_text = clean_text(text)    
     encrypted_text = encrypt(cleaned_text, cipher)
     space = cipher.get('-')
