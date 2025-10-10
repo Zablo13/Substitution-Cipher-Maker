@@ -1,10 +1,14 @@
-### Zablos Substitution Cipher 1.0.1 ###
+### Zablos Substitution Cipher 1.0.2 ###
 # for those who are bored with Sudoku :D
 # encrypts text with random substition mapping
 # difficulty 2 replaces spaces with a random sign
 # difficulty 3 masks doubled signs with "repeat previous sign" AA -> AX
 import random
 import string
+import os
+
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def generate_substitution(difficulty):
     if difficulty == 1:
@@ -69,6 +73,7 @@ def main():
     if difficulty > 2:
         encrypted_text = kill_doubles(encrypted_text, double)
     
+    clear()
     print("Encrypted text:", encrypted_text)
     
     see_map = input('Do you want to check the cipher? y/n: ').lower()
