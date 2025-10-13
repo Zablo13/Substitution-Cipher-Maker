@@ -79,6 +79,7 @@ def main():
     see_map = input('Do you want to check the cipher? y/n: ').lower()
     if see_map == 'y':
         print_mapping(cipher)
+    input('print any key to close')
 
 if __name__ == "__main__":
     main()
